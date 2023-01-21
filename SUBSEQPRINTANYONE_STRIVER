@@ -1,0 +1,52 @@
+#include<iostream>
+#include<bits/stdc++.h>
+#include <vector>
+using namespace std;
+
+bool subseq(int i , int arr[] , vector<int> &ds , int n , int s  , int sum ){
+         
+         if( i==n){
+
+            if( s == sum){
+                for( auto i : ds){
+                    cout<<i<<" ";
+                }
+
+                cout<<endl;
+                return true;
+            }
+            
+            else
+             return false;
+         }
+
+         ds.push_back(arr[i]);
+         s+=arr[i];
+         
+         if(subseq( i + 1 , arr , ds , n , s , sum) == true){
+            return true;   
+         }
+
+         ds.pop_back();
+         s-=arr[i];
+
+         if(subseq( i + 1 , arr , ds , n , s, sum) == true){
+             return true;
+         }
+         
+         return false;
+
+}
+
+
+int main ()
+{
+   
+   int n = 3;
+   int arr[] = {1,2,1};
+   int sum = 2;
+   vector<int> ds;
+   subseq(0 , arr , ds , n , 0 ,  sum );
+
+   return 0;
+}
